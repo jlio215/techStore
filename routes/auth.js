@@ -1,9 +1,14 @@
 const { Router } = require('express')
-const {createUsuario} = require('../controllers/auth.js')
+const { login } = require('../controllers/auth.js')
+const { check } = require ('express-validator')
 
 const router = Router()
-
 /**
- * Crear EstadoEquipo
+ * Crear Usuario
  */
-router.post('/', createUsuario)
+router.post('/', [
+    check('email', 'invalid mail').isEmail(),
+    check('password', 'invalid password').not().isEmpty()
+],login)
+
+module.exports = router

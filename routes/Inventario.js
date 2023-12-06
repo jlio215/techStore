@@ -1,30 +1,31 @@
 const { Router } = require('express')
 const {createInventario, getInventarios,  getInventario, updateInventarioByID, deleteInventario} = require('../controllers/Inventario.js')
+const { validateJWT } = require('../middleware/validate-jwt.js')
 
 const router = Router()
 
 /**
  * Crear Inventario
  */
-router.post('/', createInventario)
+router.post('/', validateJWT, createInventario)
 
 /**
  * consultar todos los Inventarios
  */
-router.get('/', getInventarios)
+router.get('/', validateJWT, getInventarios)
 
 /**
  * Consultar un Inventario por su ID
  */
-router.get('/:id', getInventario)
+router.get('/:id', validateJWT, getInventario)
 /**
  * Actualizar Inventario
  */
-router.put('/:id', updateInventarioByID)
+router.put('/:id', validateJWT, updateInventarioByID)
 
 /**
  * Borrar un Inventario
  */
-router.delete('/:id', deleteInventario)
+router.delete('/:id', validateJWT, deleteInventario)
 
 module.exports = router
