@@ -4,20 +4,21 @@ const TipoEquipoSchema = Schema({
     nombre: {
         type: String,
         required: [true, 'Nombre genero requerido'],
-        minlength: 1,
         unique: true
     },
     estado: {
-        type: Boolean,
-        default: true,
-        required: true
+        type: String,
+        required: true,
+        enum: ['Activo', 'Inactivo']
     },
     fechaCreacion: {
         type: Date,
+        required: true,
         default: new Date()
     },
     fechaActualizacion: {
         type: Date,
+        required: true,
         default: new Date()
     }
 })

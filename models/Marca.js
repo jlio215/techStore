@@ -3,21 +3,22 @@ const { Schema, model } = require('mongoose')
 const MarcaSchema = Schema({
     nombre: {
         type: String,
-        required: [true, 'Nombre genero requerido'],
-        minlength: 1,
+        required: [true, 'Nombre marca requerido'],
         unique: true
     },
     estado: {
-        type: Boolean,
-        default: true,
-        required: true
+        type: String,
+        required: true,
+        enum: ['Activo', 'Inactivo']
     },
     fechaCreacion: {
         type: Date,
+        required: true,
         default: new Date()
     },
     fechaActualizacion: {
         type: Date,
+        required: true,
         default: new Date()
     }
 })
