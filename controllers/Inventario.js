@@ -30,7 +30,20 @@ const getInventarios = async (req = request,
     res = response) => {
         try{
             const {  } = req.query
-            const inventarioDB = await Inventario.find()
+            const inventarioDB = await Inventario.find().populate([
+                {
+                    path: 'usuario', select: 'nombre email estado'
+                },
+                {
+                    path: 'marca', select: 'nombre estado'
+                },
+                {
+                    path: 'tipo_equipo', select: 'nombre estado'
+                },
+                {
+                    path: 'estado_equipo', select: 'nombre estado'
+                }
+            ])
             console.log(inventarioDB)//select * from genero where estado=?
             return res.json(inventarioDB)
         }catch(e){
